@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - part11b
+      - part11*
 
 jobs:
   hello_world_job:

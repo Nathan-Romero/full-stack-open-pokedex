@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-      - part11b
+      - part11*
 
 jobs:
   simple_deployment_pipeline:
@@ -22,3 +22,5 @@ jobs:
         run: npm run build
       - name: test
         run: npm test
+      - name: e2e tests
+        run: npm run test:e2e
