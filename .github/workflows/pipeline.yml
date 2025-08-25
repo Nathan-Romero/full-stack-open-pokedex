@@ -1,9 +1,13 @@
 name: Deployment pipeline
 
+env:
+  SKIP_CONDITION: ${{ contains(toJson(github.event.commits.*.message), '#skip') }}
+
 on:
   push:
     branches:
       - main
+      - part11*
   pull_request:
     branches: [main]
     types: [opened, synchronize]
@@ -37,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: GitHub Tag Bump
-        if: ${{ github.event_name == 'push' }}
+        if: ${{ github.event_name == 'push' && env.SKIP_CONDITION == 'false'}}
         uses: anothrNick/github-tag-action@1.75.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
