@@ -40,6 +40,7 @@ jobs:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: GitHub Tag Bump
         if: ${{ github.event_name == 'push' && env.SKIP_CONDITION == 'false'}}
         uses: anothrNick/github-tag-action@8c8163ef62cf9c4677c8e800f36270af27930f42
